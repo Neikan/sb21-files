@@ -12,39 +12,26 @@ import 'package:app_files/data/services/service_http.dart';
 const String _directoryImages = 'images';
 
 class RepositoryImagesImp extends RepositoryImages {
-  const RepositoryImagesImp();
+  RepositoryImagesImp();
+
+  late Directory _directory;
 
   @override
-  Future<List<String>> init() async {
-    final directory = await _getDirectory();
-    final images = directory.listSync();
+  List<String> get data =>
+      _directory.listSync().map((image) => image.path).toList();
 
-    if (images.isEmpty) return [];
-
-    return images.map((image) => image.path).toList();
+  @override
+  Future<void> init() async {
+    await _getDirectory();
   }
 
   @override
-  Future<List<String>> add(String url) async {
-    _createFile(url);
-
-    final directory = await _getDirectory();
-
-    final images = directory.listSync();
-
-    print(images);
-
-    return images.map((image) => image.path).toList();
-  }
-
-  Future<void> _createFile(String url) async {
-    final directory = await _getDirectory();
-
+  Future<void> add(String url) async {
     final response = await ServiceHttp.instance.getFile(url);
 
     if (response.statusCode == 200) {
       final timestamp = DateTime.now().millisecondsSinceEpoch;
-      final filename = '${directory.path}$timestamp${url.split('.').last}';
+      final filename = '${_directory.path}$timestamp${url.split('.').last}';
 
       Uint8List uint8list = response.data;
       ByteBuffer buffer = uint8list.buffer;
@@ -61,15 +48,18 @@ class RepositoryImagesImp extends RepositoryImages {
     }
   }
 
-  Future<Directory> _getDirectory() async {
-    final directory = await getApplicationDocumentsDirectory();
+  @override
+  Future<void> remove(String path) async {
+    await File(path).delete();
+  }
 
-    final directoryImages = Directory('${directory.path}/$_directoryImages/');
+  Future<void> _getDirectory() async {
+    final directoryApp = await getApplicationDocumentsDirectory();
 
-    if (!await directoryImages.exists()) {
-      await directoryImages.create(recursive: true);
+    _directory = Directory('${directoryApp.path}/$_directoryImages/');
+
+    if (!await _directory.exists()) {
+      await _directory.create(recursive: true);
     }
-
-    return directoryImages;
   }
 }
