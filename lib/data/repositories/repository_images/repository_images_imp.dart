@@ -9,37 +9,67 @@ import 'package:path_provider/path_provider.dart';
 import 'package:app_files/data/repositories/repository_images/repository_images.dart';
 import 'package:app_files/data/services/service_http.dart';
 
+const String _directoryImages = 'images';
+
 class RepositoryImagesImp extends RepositoryImages {
   const RepositoryImagesImp();
 
   @override
-  Future<List<String>> getData(String url) async {
-    List<String> images = [];
+  Future<List<String>> init() async {
+    final directory = await _getDirectory();
+    final images = directory.listSync();
+
+    if (images.isEmpty) return [];
+
+    return images.map((image) => image.path).toList();
+  }
+
+  @override
+  Future<List<String>> add(String url) async {
+    _createFile(url);
+
+    final directory = await _getDirectory();
+
+    final images = directory.listSync();
+
+    print(images);
+
+    return images.map((image) => image.path).toList();
+  }
+
+  Future<void> _createFile(String url) async {
+    final directory = await _getDirectory();
 
     final response = await ServiceHttp.instance.getFile(url);
 
     if (response.statusCode == 200) {
-      final Directory appDocDir = await getApplicationDocumentsDirectory();
-
-      final String filename = '${appDocDir.path}/${url.split('.').last}';
+      final timestamp = DateTime.now().millisecondsSinceEpoch;
+      final filename = '${directory.path}$timestamp${url.split('.').last}';
 
       Uint8List uint8list = response.data;
+      ByteBuffer buffer = uint8list.buffer;
+      ByteData byteData = ByteData.view(uint8list.buffer);
 
-      final buffer = uint8list.buffer;
-      ByteData byteData = ByteData.view(buffer);
+      final file = File(filename);
 
-      final imageFile = File(filename);
+      await file.create();
 
-      await imageFile.create();
-
-      await imageFile.writeAsBytes(buffer.asUint8List(
+      await file.writeAsBytes(buffer.asUint8List(
         byteData.offsetInBytes,
         byteData.lengthInBytes,
       ));
+    }
+  }
 
-      images.add(filename);
+  Future<Directory> _getDirectory() async {
+    final directory = await getApplicationDocumentsDirectory();
+
+    final directoryImages = Directory('${directory.path}/$_directoryImages/');
+
+    if (!await directoryImages.exists()) {
+      await directoryImages.create(recursive: true);
     }
 
-    return images;
+    return directoryImages;
   }
 }

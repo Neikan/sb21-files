@@ -1,5 +1,7 @@
 abstract class RepositoryImages {
   const RepositoryImages();
 
-  Future<List<String>> getData(String url);
+  Future<List<String>> init();
+
+  Future<List<String>> add(String url);
 }
