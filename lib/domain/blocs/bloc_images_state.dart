@@ -7,6 +7,6 @@ part 'bloc_images_state.freezed.dart';
 class BlocImagesState with _$BlocImagesState {
   const factory BlocImagesState.init() = BlocImagesStateInit;
 
-  const factory BlocImagesState.update(List<String> images) =
-      BlocImagesStateUpdate;
+  const factory BlocImagesState.loaded(List<String> images) =
+      BlocImagesStateLoaded;
 }

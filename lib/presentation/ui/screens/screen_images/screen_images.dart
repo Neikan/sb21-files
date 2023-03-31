@@ -34,7 +34,7 @@ class ScreenImages extends StatelessWidget {
       body: BlocBuilder<BlocImages, BlocImagesState>(
         builder: (_, state) => state.when(
           init: () => _UiEmptyData(text: labelsImages[keyContent]!),
-          update: (images) => _UiList(images: images),
+          loaded: (images) => _UiList(images: images),
         ),
       ),
       floatingActionButton: UiButtonCreate(

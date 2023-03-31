@@ -19,38 +19,38 @@ mixin _$BlocImagesState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function(List<String> images) update,
+    required TResult Function(List<String> images) loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function(List<String> images)? update,
+    TResult? Function(List<String> images)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function(List<String> images)? update,
+    TResult Function(List<String> images)? loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(BlocImagesStateInit value) init,
-    required TResult Function(BlocImagesStateUpdate value) update,
+    required TResult Function(BlocImagesStateLoaded value) loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(BlocImagesStateInit value)? init,
-    TResult? Function(BlocImagesStateUpdate value)? update,
+    TResult? Function(BlocImagesStateLoaded value)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(BlocImagesStateInit value)? init,
-    TResult Function(BlocImagesStateUpdate value)? update,
+    TResult Function(BlocImagesStateLoaded value)? loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -113,7 +113,7 @@ class _$BlocImagesStateInit implements BlocImagesStateInit {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function(List<String> images) update,
+    required TResult Function(List<String> images) loaded,
   }) {
     return init();
   }
@@ -122,7 +122,7 @@ class _$BlocImagesStateInit implements BlocImagesStateInit {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function(List<String> images)? update,
+    TResult? Function(List<String> images)? loaded,
   }) {
     return init?.call();
   }
@@ -131,7 +131,7 @@ class _$BlocImagesStateInit implements BlocImagesStateInit {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function(List<String> images)? update,
+    TResult Function(List<String> images)? loaded,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -144,7 +144,7 @@ class _$BlocImagesStateInit implements BlocImagesStateInit {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(BlocImagesStateInit value) init,
-    required TResult Function(BlocImagesStateUpdate value) update,
+    required TResult Function(BlocImagesStateLoaded value) loaded,
   }) {
     return init(this);
   }
@@ -153,7 +153,7 @@ class _$BlocImagesStateInit implements BlocImagesStateInit {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(BlocImagesStateInit value)? init,
-    TResult? Function(BlocImagesStateUpdate value)? update,
+    TResult? Function(BlocImagesStateLoaded value)? loaded,
   }) {
     return init?.call(this);
   }
@@ -162,7 +162,7 @@ class _$BlocImagesStateInit implements BlocImagesStateInit {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(BlocImagesStateInit value)? init,
-    TResult Function(BlocImagesStateUpdate value)? update,
+    TResult Function(BlocImagesStateLoaded value)? loaded,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -177,20 +177,20 @@ abstract class BlocImagesStateInit implements BlocImagesState {
 }
 
 /// @nodoc
-abstract class _$$BlocImagesStateUpdateCopyWith<$Res> {
-  factory _$$BlocImagesStateUpdateCopyWith(_$BlocImagesStateUpdate value,
-          $Res Function(_$BlocImagesStateUpdate) then) =
-      __$$BlocImagesStateUpdateCopyWithImpl<$Res>;
+abstract class _$$BlocImagesStateLoadedCopyWith<$Res> {
+  factory _$$BlocImagesStateLoadedCopyWith(_$BlocImagesStateLoaded value,
+          $Res Function(_$BlocImagesStateLoaded) then) =
+      __$$BlocImagesStateLoadedCopyWithImpl<$Res>;
   @useResult
   $Res call({List<String> images});
 }
 
 /// @nodoc
-class __$$BlocImagesStateUpdateCopyWithImpl<$Res>
-    extends _$BlocImagesStateCopyWithImpl<$Res, _$BlocImagesStateUpdate>
-    implements _$$BlocImagesStateUpdateCopyWith<$Res> {
-  __$$BlocImagesStateUpdateCopyWithImpl(_$BlocImagesStateUpdate _value,
-      $Res Function(_$BlocImagesStateUpdate) _then)
+class __$$BlocImagesStateLoadedCopyWithImpl<$Res>
+    extends _$BlocImagesStateCopyWithImpl<$Res, _$BlocImagesStateLoaded>
+    implements _$$BlocImagesStateLoadedCopyWith<$Res> {
+  __$$BlocImagesStateLoadedCopyWithImpl(_$BlocImagesStateLoaded _value,
+      $Res Function(_$BlocImagesStateLoaded) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -198,7 +198,7 @@ class __$$BlocImagesStateUpdateCopyWithImpl<$Res>
   $Res call({
     Object? images = null,
   }) {
-    return _then(_$BlocImagesStateUpdate(
+    return _then(_$BlocImagesStateLoaded(
       null == images
           ? _value._images
           : images // ignore: cast_nullable_to_non_nullable
@@ -209,8 +209,8 @@ class __$$BlocImagesStateUpdateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$BlocImagesStateUpdate implements BlocImagesStateUpdate {
-  const _$BlocImagesStateUpdate(final List<String> images) : _images = images;
+class _$BlocImagesStateLoaded implements BlocImagesStateLoaded {
+  const _$BlocImagesStateLoaded(final List<String> images) : _images = images;
 
   final List<String> _images;
   @override
@@ -222,14 +222,14 @@ class _$BlocImagesStateUpdate implements BlocImagesStateUpdate {
 
   @override
   String toString() {
-    return 'BlocImagesState.update(images: $images)';
+    return 'BlocImagesState.loaded(images: $images)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$BlocImagesStateUpdate &&
+            other is _$BlocImagesStateLoaded &&
             const DeepCollectionEquality().equals(other._images, _images));
   }
 
@@ -240,37 +240,37 @@ class _$BlocImagesStateUpdate implements BlocImagesStateUpdate {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$BlocImagesStateUpdateCopyWith<_$BlocImagesStateUpdate> get copyWith =>
-      __$$BlocImagesStateUpdateCopyWithImpl<_$BlocImagesStateUpdate>(
+  _$$BlocImagesStateLoadedCopyWith<_$BlocImagesStateLoaded> get copyWith =>
+      __$$BlocImagesStateLoadedCopyWithImpl<_$BlocImagesStateLoaded>(
           this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function(List<String> images) update,
+    required TResult Function(List<String> images) loaded,
   }) {
-    return update(images);
+    return loaded(images);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function(List<String> images)? update,
+    TResult? Function(List<String> images)? loaded,
   }) {
-    return update?.call(images);
+    return loaded?.call(images);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function(List<String> images)? update,
+    TResult Function(List<String> images)? loaded,
     required TResult orElse(),
   }) {
-    if (update != null) {
-      return update(images);
+    if (loaded != null) {
+      return loaded(images);
     }
     return orElse();
   }
@@ -279,40 +279,40 @@ class _$BlocImagesStateUpdate implements BlocImagesStateUpdate {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(BlocImagesStateInit value) init,
-    required TResult Function(BlocImagesStateUpdate value) update,
+    required TResult Function(BlocImagesStateLoaded value) loaded,
   }) {
-    return update(this);
+    return loaded(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(BlocImagesStateInit value)? init,
-    TResult? Function(BlocImagesStateUpdate value)? update,
+    TResult? Function(BlocImagesStateLoaded value)? loaded,
   }) {
-    return update?.call(this);
+    return loaded?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(BlocImagesStateInit value)? init,
-    TResult Function(BlocImagesStateUpdate value)? update,
+    TResult Function(BlocImagesStateLoaded value)? loaded,
     required TResult orElse(),
   }) {
-    if (update != null) {
-      return update(this);
+    if (loaded != null) {
+      return loaded(this);
     }
     return orElse();
   }
 }
 
-abstract class BlocImagesStateUpdate implements BlocImagesState {
-  const factory BlocImagesStateUpdate(final List<String> images) =
-      _$BlocImagesStateUpdate;
+abstract class BlocImagesStateLoaded implements BlocImagesState {
+  const factory BlocImagesStateLoaded(final List<String> images) =
+      _$BlocImagesStateLoaded;
 
   List<String> get images;
   @JsonKey(ignore: true)
-  _$$BlocImagesStateUpdateCopyWith<_$BlocImagesStateUpdate> get copyWith =>
+  _$$BlocImagesStateLoadedCopyWith<_$BlocImagesStateLoaded> get copyWith =>
       throw _privateConstructorUsedError;
 }
