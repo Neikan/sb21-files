@@ -9,8 +9,23 @@ class _UiCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return UiCard(
-      child: Image.file(File(image)),
+    return InkWell(
+      onDoubleTap: () => context.read<BlocImages>().add(
+            BlocImagesEventRemove(path: image),
+          ),
+      child: UiCard(
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(8.0),
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width,
+            height: 200,
+            child: Image.file(
+              File(image),
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

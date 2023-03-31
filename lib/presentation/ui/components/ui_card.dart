@@ -22,7 +22,7 @@ class UiCard extends StatelessWidget {
       elevation: 10,
       child: ListTile(
         minVerticalPadding: 0.0,
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16.0),
+        contentPadding: EdgeInsets.zero,
         title: child,
       ),
     );

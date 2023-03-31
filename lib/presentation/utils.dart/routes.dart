@@ -14,11 +14,11 @@ import 'package:app_files/presentation/ui/screens/screen_not_found.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) => MaterialPageRoute(
       settings: settings,
-      builder: (BuildContext context) {
+      builder: (_) {
         switch (settings.name) {
           case routeImages:
             return BlocProvider<BlocImages>(
-              create: (_) => BlocImages(repo: const RepositoryImagesImp())
+              create: (_) => BlocImages(repo: RepositoryImagesImp())
                 ..add(BlocImagesEventInit()),
               child: const ScreenImages(),
             );
