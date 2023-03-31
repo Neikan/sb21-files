@@ -9,3 +9,11 @@ class BlocImagesEventAdd extends BlocImagesEvent {
     required this.url,
   });
 }
+
+class BlocImagesEventRemove extends BlocImagesEvent {
+  final String path;
+
+  BlocImagesEventRemove({
+    required this.path,
+  });
+}

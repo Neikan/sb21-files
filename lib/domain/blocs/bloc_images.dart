@@ -12,13 +12,16 @@ class BlocImages extends Bloc<BlocImagesEvent, BlocImagesState> {
   BlocImages({required this.repo}) : super(const BlocImagesState.init()) {
     on<BlocImagesEventInit>(_init);
     on<BlocImagesEventAdd>(_add);
+    on<BlocImagesEventRemove>(_remove);
   }
 
   void _init(
     BlocImagesEventInit event,
     Emitter<BlocImagesState> emit,
   ) async {
-    final images = await repo.init();
+    await repo.init();
+
+    final images = repo.data;
 
     images.isEmpty
         ? emit(const BlocImagesState.init())
@@ -29,8 +32,23 @@ class BlocImages extends Bloc<BlocImagesEvent, BlocImagesState> {
     BlocImagesEventAdd event,
     Emitter<BlocImagesState> emit,
   ) async {
-    final images = await repo.add(event.url);
+    await repo.add(event.url);
+
+    final images = repo.data;
 
     emit(BlocImagesState.loaded(images));
+  }
+
+  Future<void> _remove(
+    BlocImagesEventRemove event,
+    Emitter<BlocImagesState> emit,
+  ) async {
+    await repo.remove(event.path);
+
+    final images = repo.data;
+
+    images.isEmpty
+        ? emit(const BlocImagesState.init())
+        : emit(BlocImagesState.loaded(images));
   }
 }
