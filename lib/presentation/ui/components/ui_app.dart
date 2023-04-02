@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 // Project imports:
 import 'package:app_files/presentation/consts/routes.dart';
-import 'package:app_files/presentation/styles/themes.dart';
+import 'package:app_files/presentation/ui/styles/themes.dart';
 import 'package:app_files/presentation/utils/routes.dart';
 
 class UiApp extends StatelessWidget {
