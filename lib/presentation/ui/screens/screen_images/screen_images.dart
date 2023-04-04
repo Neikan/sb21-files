@@ -31,10 +31,12 @@ class ScreenImages extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: UiAppBar(title: labelsImages[keyTitle]!),
-      body: BlocBuilder<BlocImages, BlocImagesState>(
-        builder: (_, state) => state.when(
-          init: () => _UiEmptyData(text: labelsImages[keyContent]!),
-          loaded: (images) => _UiList(images: images),
+      body: SafeArea(
+        child: BlocBuilder<BlocImages, BlocImagesState>(
+          builder: (_, state) => state.when(
+            init: () => _UiEmptyData(text: labelsImages[keyContent]!),
+            loaded: (images) => _UiList(images: images),
+          ),
         ),
       ),
       floatingActionButton: UiButtonCreate(
